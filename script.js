@@ -183,7 +183,7 @@ function copyCA() {
       const btnText = document.getElementById('ca-btn-text');
       const navText = document.getElementById('nav-ca-text');
       if (btnText) { btnText.textContent = 'Copied! ✓'; setTimeout(() => { btnText.textContent = 'Copy CA'; }, 2500); }
-      if (navText) { navText.textContent = 'Copied! ✓'; setTimeout(() => { navText.textContent = '📋 CA: ' + CONFIG.CA.slice(0,6) + '...'; }, 2500); }
+      if (navText) { navText.textContent = 'Copied! ✓'; setTimeout(() => { navText.textContent = '📋 CA:BwLqa4a7YiDZpM1KdhPFVpW4adEQ6LvTy9FsrRjMpump ' + CONFIG.CA.slice(0,6) + '...'; }, 2500); }
     })
     .catch(() => showToast('🍋 Launching soon — stay tuned!'));
 }
