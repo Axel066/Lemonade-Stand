@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$ALEX — Alex's Lemonade Stand Coin</title>
+  <meta name="description" content="The charity coin for Alex's Lemonade Stand Foundation. Every trade funds childhood cancer research." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<!-- PARTICLES -->
+<div id="particles" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <div class="nav-logo">
+    <span class="nav-lemon">🍋</span>
+    <span>$ALEX</span>
+  </div>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#buy">How to Buy</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#community">Community</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-ca-btn" onclick="copyCA()">
+      <span id="nav-ca-text">📋 CA: TBA</span>
+    </button>
+    <a class="nav-buy-btn" href="https://pump.fun" target="_blank" rel="noopener">🍋 Buy Now!</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+  <div class="mobile-menu-logo">🍋 $ALEX</div>
+  <nav class="mobile-nav-links">
+    <a href="#story" onclick="toggleMenu()">Alex's Story</a>
+    <a href="#glass" onclick="toggleMenu()">Donation Tracker</a>
+    <a href="#buy" onclick="toggleMenu()">How to Buy</a>
+    <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <a href="#community" onclick="toggleMenu()">Community</a>
+  </nav>
+  <a href="https://pump.fun" target="_blank" rel="noopener" class="mobile-buy-btn" onclick="toggleMenu()">🍋 Buy $ALEX on Pump.fun!</a>
+  <button class="mobile-ca-btn" onclick="copyCA(); toggleMenu()">📋 Copy Contract Address</button>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <!-- Sky decor -->
+  <div class="sun" aria-hidden="true">
+    <div class="sun-rays"></div>
+  </div>
+  <div class="cloud cloud-1" aria-hidden="true"></div>
+  <div class="cloud cloud-2" aria-hidden="true"></div>
+  <div class="cloud cloud-3" aria-hidden="true"></div>
+  <div class="cloud cloud-4" aria-hidden="true"></div>
+  <!-- Floating lemons -->
+  <span class="deco-lemon dl-1" aria-hidden="true">🍋</span>
+  <span class="deco-lemon dl-2" aria-hidden="true">⭐</span>
+  <span class="deco-lemon dl-3" aria-hidden="true">🍋</span>
+  <span class="deco-lemon dl-4" aria-hidden="true">💛</span>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-live-tag">
+        <span class="live-dot"></span>
+        Live on Pump.fun · Charity Coin
+      </div>
+      <h1>One Kid.<br>One Stand.<br><span class="hero-accent">One Dream.</span></h1>
+      <p class="hero-sub">Alex was 4 years old when she set up a lemonade stand to fight childhood cancer. Now every $ALEX trade continues her mission — forever.</p>
+      <div class="hero-btns">
+        <a class="btn-yellow" href="https://pump.fun" target="_blank" rel="noopener">🍋 Buy $ALEX!</a>
+        <a class="btn-outline" href="#story">Her Story →</a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge-item">✓ Verified Charity</span>
+        <span class="badge-item">⚡ Solana</span>
+        <span class="badge-item">🔗 donate.gg</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- Lemon Mascot -->
+      <div class="mascot-wrap">
+        <svg class="lemon-mascot" viewBox="0 0 140 170" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shadow -->
+          <ellipse cx="70" cy="162" rx="40" ry="8" fill="rgba(0,0,0,0.15)"/>
+          <!-- Body -->
+          <ellipse cx="70" cy="90" rx="55" ry="65" fill="#FFD700" stroke="#1a1a2e" stroke-width="4"/>
+          <!-- Highlight -->
+          <ellipse cx="52" cy="65" rx="14" ry="20" fill="rgba(255,255,255,0.3)" transform="rotate(-20 52 65)"/>
+          <!-- Top leaf -->
+          <ellipse cx="70" cy="26" rx="16" ry="10" fill="#5CB85C" stroke="#1a1a2e" stroke-width="3"/>
+          <ellipse cx="56" cy="22" rx="10" ry="7" fill="#5CB85C" stroke="#1a1a2e" stroke-width="2.5" transform="rotate(-25 56 22)"/>
+          <!-- Eyes -->
+          <circle cx="55" cy="82" r="9" fill="#1a1a2e"/>
+          <circle cx="85" cy="82" r="9" fill="#1a1a2e"/>
+          <circle cx="58" cy="79" r="3" fill="white"/>
+          <circle cx="88" cy="79" r="3" fill="white"/>
+          <!-- Smile -->
+          <path d="M50 108 Q70 126 90 108" stroke="#1a1a2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Cheeks -->
+          <circle cx="40" cy="100" r="11" fill="#FF8C42" opacity="0.55"/>
+          <circle cx="100" cy="100" r="11" fill="#FF8C42" opacity="0.55"/>
+          <!-- Arms holding sign -->
+          <path d="M18 95 Q8 80 14 68" stroke="#FFD700" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M122 95 Q132 80 126 68" stroke="#FFD700" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <!-- Hands -->
+          <circle cx="13" cy="66" r="8" fill="#FFD700" stroke="#1a1a2e" stroke-width="3"/>
+          <circle cx="127" cy="66" r="8" fill="#FFD700" stroke="#1a1a2e" stroke-width="3"/>
+        </svg>
+
+        <!-- Sign held by mascot -->
+        <div class="mascot-sign">
+          <div class="sign-top">🍋 $ALEX</div>
+          <div class="sign-sub">Charity Coin!</div>
+        </div>
+      </div>
+
+      <!-- Animated Glass -->
+      <div class="glass-wrap">
+        <svg width="230" height="290" viewBox="0 0 230 290" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="heroClip">
+              <path d="M 18 46 L 212 46 L 184 266 L 46 266 Z"/>
+            </clipPath>
+            <linearGradient id="liqGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFF176"/>
+              <stop offset="100%" stop-color="#FFD700"/>
+            </linearGradient>
+          </defs>
+          <!-- Glass body -->
+          <path d="M 18 46 L 212 46 L 184 266 L 46 266 Z" fill="rgba(210,240,255,0.32)"/>
+          <!-- Liquid -->
+          <path id="wavePath" d="" fill="url(#liqGrad)" clip-path="url(#heroClip)" opacity="0.93"/>
+          <!-- Bubbles -->
+          <g id="bubbles" clip-path="url(#heroClip)"></g>
+          <!-- Left shine -->
+          <path d="M 28 58 L 42 250 L 54 248 L 40 58 Z" fill="rgba(255,255,255,0.33)" clip-path="url(#heroClip)"/>
+          <!-- Right subtle shade -->
+          <path d="M 202 58 L 190 250 L 178 248 L 190 58 Z" fill="rgba(0,0,0,0.06)" clip-path="url(#heroClip)"/>
+          <!-- Glass outline -->
+          <path d="M 18 46 L 212 46 L 184 266 L 46 266 Z" fill="none" stroke="#1a1a2e" stroke-width="4.5" stroke-linejoin="round"/>
+          <!-- Top rim -->
+          <rect x="10" y="28" width="210" height="20" rx="10" fill="#FFD700" stroke="#1a1a2e" stroke-width="3.5"/>
+          <!-- Bottom base -->
+          <rect x="40" y="264" width="150" height="16" rx="8" fill="#FFD700" stroke="#1a1a2e" stroke-width="3"/>
+          <!-- Straw -->
+          <rect x="148" y="-8" width="13" height="210" rx="6.5" fill="#FF6B6B" stroke="#1a1a2e" stroke-width="2.5"/>
+          <rect x="151" y="-8" width="5" height="210" rx="2.5" fill="rgba(255,255,255,0.45)"/>
+          <!-- Lemon slice on rim -->
+          <g transform="translate(154, 30) rotate(-16)">
+            <circle cx="0" cy="0" r="22" fill="#FFD700" stroke="#1a1a2e" stroke-width="2.8"/>
+            <circle cx="0" cy="0" r="14" fill="#FFF9C4"/>
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="#FFD700" stroke-width="1.8"/>
+            <line x1="-14" y1="0" x2="14" y2="0" stroke="#FFD700" stroke-width="1.8"/>
+            <line x1="-10" y1="-10" x2="10" y2="10" stroke="#FFD700" stroke-width="1.4"/>
+            <line x1="10" y1="-10" x2="-10" y2="10" stroke="#FFD700" stroke-width="1.4"/>
+          </g>
+          <!-- Percentage text -->
+          <text id="pctSvg" x="115" y="165" text-anchor="middle" font-family="Fredoka One, cursive" font-size="42" fill="rgba(26,26,46,0.72)">33%</text>
+          <text x="115" y="190" text-anchor="middle" font-family="Nunito, sans-serif" font-size="12" fill="rgba(26,26,46,0.52)" font-weight="700">of $50K goal</text>
+        </svg>
+        <div class="glass-label-card">
+          <div class="glass-pct-big" id="pctBig">33%</div>
+          <div class="glass-goal-txt">of $50,000 goal raised! 🎉</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave bottom -->
+  <div class="wave-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 Q180,90 360,45 Q540,0 720,45 Q900,90 1080,45 Q1260,0 1440,45 L1440,90 L0,90 Z" fill="#FFFBF0"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ CA BAR ============ -->
+<div class="ca-bar">
+  <div class="ca-bar-inner">
+    <div class="ca-tag">📋 Contract Address</div>
+    <div class="ca-address-row">
+      <span class="ca-chain">SOL ⚡</span>
+      <span class="ca-address" id="ca-display">TBA — Launching Soon on Pump.fun 🚀</span>
+    </div>
+    <button class="ca-copy-btn" onclick="copyCA()" id="ca-btn">
+      <span id="ca-btn-text">Copy CA</span>
+    </button>
+    <a class="ca-pump-link" href="https://pump.fun" target="_blank" rel="noopener">Open Pump.fun ↗</a>
+  </div>
+</div>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>🍋 $ALEX — Charity Coin on Solana</span>
+    <span>⭐ Buy on Pump.fun</span>
+    <span>💛 Fighting Childhood Cancer</span>
+    <span>🍋 Creator Fees → ALSF via donate.gg</span>
+    <span>⭐ 100% Fair Launch — No Pre-sale</span>
+    <span>💛 Every Trade = A Donation</span>
+    <span>🍋 $ALEX — Charity Coin on Solana</span>
+    <span>⭐ Buy on Pump.fun</span>
+    <span>💛 Fighting Childhood Cancer</span>
+    <span>🍋 Creator Fees → ALSF via donate.gg</span>
+    <span>⭐ 100% Fair Launch — No Pre-sale</span>
+    <span>💛 Every Trade = A Donation</span>
+  </div>
+</div>
+
+<!-- ============ WHY $ALEX ============ -->
+<section class="why-section" id="why">
+  <!-- Deco shapes -->
+  <div class="deco-circle dc-1" aria-hidden="true"></div>
+  <div class="deco-circle dc-2" aria-hidden="true"></div>
+
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">Why $ALEX?</div>
+      <h2>Crypto that<br>actually <em>helps kids</em> 💛</h2>
+    </div>
+    <div class="cards-4">
+      <div class="cartoon-card cc-yellow reveal">
+        <div class="cc-icon">🍋</div>
+        <h3>100% Fair Launch</h3>
+        <p>No pre-sale. No team tokens. Pure Pump.fun bonding curve — everyone gets in at the same price!</p>
+      </div>
+      <div class="cartoon-card cc-blue reveal">
+        <div class="cc-icon">💛</div>
+        <h3>Verified Charity</h3>
+        <p>Creator fees automatically go to Alex's Lemonade Stand Foundation via donate.gg. For real!</p>
+      </div>
+      <div class="cartoon-card cc-green reveal">
+        <div class="cc-icon">🧾</div>
+        <h3>On-Chain Proof</h3>
+        <p>Every single donation is on the Solana blockchain. No trust needed — verify it yourself anytime!</p>
+      </div>
+      <div class="cartoon-card cc-orange reveal">
+        <div class="cc-icon">🚀</div>
+        <h3>Community Mission</h3>
+        <p>Every holder is a donor. Every trade funds cancer research. Together we fill the glass!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-bottom wb-cream-to-yellow" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q360,80 720,40 Q1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF9C4"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ PROGRESS / GLASS ============ -->
+<section class="progress-section" id="glass">
+  <div class="deco-star ds-1" aria-hidden="true">⭐</div>
+  <div class="deco-star ds-2" aria-hidden="true">✨</div>
+
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label pill-live"><span class="live-dot" aria-hidden="true"></span> Live Donation Tracker</div>
+      <h2>Watch the glass fill<br>with every trade! 🍋</h2>
+    </div>
+    <div class="progress-grid">
+      <!-- Left: stat cards + verified strip -->
+      <div class="progress-stats reveal">
+        <div class="tracker-stats">
+          <div class="tracker-stat ts-yellow">
+            <span class="ts-icon">💰</span>
+            <div class="ts-val" id="raised">$16.5K</div>
+            <div class="ts-label">Raised So Far</div>
+          </div>
+          <div class="tracker-stat ts-blue">
+            <span class="ts-icon">📊</span>
+            <div class="ts-val" id="market-cap">TBA</div>
+            <div class="ts-label">Market Cap</div>
+          </div>
+          <div class="tracker-stat ts-green">
+            <span class="ts-icon">👥</span>
+            <div class="ts-val" id="holders">2,841</div>
+            <div class="ts-label">Holders</div>
+          </div>
+          <div class="tracker-stat ts-orange">
+            <span class="ts-icon">🎯</span>
+            <div class="ts-val">$50,000</div>
+            <div class="ts-label">Donation Goal</div>
+          </div>
+        </div>
+        <div class="tracker-verified">
+          <span class="tv-dot" aria-hidden="true"></span>
+          <span class="tv-text">Verified via</span>
+          <a href="https://donate.gg" target="_blank" rel="noopener" class="tv-badge">🔗 donate.gg</a>
+          <span class="tv-right">Alex's Lemonade Stand Foundation 💛</span>
+        </div>
+      </div>
+      <!-- Right: fill meter glass -->
+      <div class="progress-visual reveal">
+        <div class="fill-meter">
+          <div class="fill-meter-bar">
+            <div class="fill-meter-liquid" id="liquidBar" style="height:33%">
+              <div class="fill-wave"></div>
+            </div>
+            <span class="fill-pct-label" id="fillPct">33%</span>
+          </div>
+          <div class="meter-labels">
+            <span>$0</span>
+            <span>$25K</span>
+            <span>$50K 🎯</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ ALEX'S REAL PHOTO SPOTLIGHT ============ -->
+<section class="alex-photo-section" id="alex-photo">
+  <div class="section-inner">
+    <div class="alex-spotlight reveal">
+      <div class="alex-photo-frame">
+        <!-- PLACE YOUR PHOTO HERE: save the lemonade stand photo as "alex-stand.jpg" in this folder -->
+        <img
+          src="alex-stand.jpg"
+          alt="Young Alex Scott at her original lemonade stand, 2000"
+          class="alex-real-photo"
+          onerror="this.parentElement.classList.add('no-photo')"
+        />
+        <div class="photo-frame-border"></div>
+        <div class="photo-year-tag">📸 Summer 2000</div>
+      </div>
+      <div class="alex-photo-text">
+        <div class="pill-label">The Original</div>
+        <h2>This is where<br>it all started 💛</h2>
+        <p class="big-quote">"I want to set up a lemonade stand to help other kids like me."</p>
+        <p class="quote-attr">— Alex Scott, age 4</p>
+        <p>Armed with hand-painted signs and pure determination, <strong>Alexandra "Alex" Scott</strong> set up her first lemonade stand in front of her parents' home. She raised <strong>$2,000 in a single day</strong>. Every cup sold went to the doctors helping kids like her fight cancer.</p>
+        <div class="legacy-pills">
+          <span class="lpill">🏥 $250M+ raised</span>
+          <span class="lpill">🧬 1,000+ research grants</span>
+          <span class="lpill">💛 Her legacy lives on</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALSF Logo strip -->
+  <div class="alsf-strip reveal">
+    <div class="alsf-strip-inner">
+      <span class="alsf-label">Officially supporting →</span>
+      <!-- PLACE YOUR LOGO HERE: save the ALSF logo as "alsf-logo.png" in this folder -->
+      <img
+        src="alsf-logo.png"
+        alt="Alex's Lemonade Stand Foundation Logo"
+        class="alsf-logo-img"
+        onerror="this.style.display='none'; this.nextSibling.style.display='flex'"
+      />
+      <span class="alsf-fallback" style="display:none">🍋 Alex's Lemonade Stand Foundation</span>
+      <a href="https://www.alexslemonade.org/" target="_blank" rel="noopener" class="alsf-link">Visit Foundation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story-section" id="story">
+  <div class="deco-circle dc-3" aria-hidden="true"></div>
+
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-img-col reveal">
+        <div class="story-photo-card">
+          <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&auto=format&fit=crop&q=80" alt="Child with hope" loading="lazy"/>
+        </div>
+        <div class="story-float-badge">
+          🍋 Est. 2000<br><strong>$250M+ Raised</strong>
+        </div>
+      </div>
+      <div class="story-text-col reveal">
+        <div class="pill-label">Alex's Story</div>
+        <h2>From a backyard<br>to the blockchain</h2>
+        <p><strong>Alexandra "Alex" Scott</strong> was diagnosed with neuroblastoma before her first birthday. At just 4 years old, she decided she wanted to help — setting up a lemonade stand to raise money for doctors helping other kids with cancer.</p>
+        <p>By the time Alex passed away at age 8 in 2004, she had raised over <strong>$1 million</strong>. Her parents kept her dream alive. Today, Alex's Lemonade Stand Foundation has raised over <strong>$250 million</strong> for childhood cancer research.</p>
+        <p><strong>$ALEX brings her mission on-chain.</strong> Every buy, every trade, every holder — another drop in the glass she started filling over 20 years ago.</p>
+        <div class="story-pills">
+          <span class="spill sp-yellow">🏥 $250M+ raised</span>
+          <span class="spill sp-blue">🧬 1,000+ grants</span>
+          <span class="spill sp-green">👶 Started age 4</span>
+          <span class="spill sp-orange">💛 Forever her legacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 Q360,0 720,60 Q1080,100 1440,40 L1440,80 L0,80 Z" fill="#E8F4FD"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ HOW TO BUY ============ -->
+<section class="buy-section" id="buy">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">How to Buy</div>
+      <h2>Get $ALEX in<br>4 easy steps! 🛒</h2>
+      <p class="section-sub">New to crypto? No worries! We got you.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-card sc-1 reveal">
+        <div class="step-num-tag">01</div>
+        <div class="step-emoji">👛</div>
+        <h3>Get Phantom Wallet</h3>
+        <p>Download <strong>Phantom</strong> — the easiest Solana wallet, available on Chrome, iOS & Android!</p>
+        <a href="https://phantom.com" target="_blank" rel="noopener" class="step-btn sb-blue">Get Phantom →</a>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-card sc-2 reveal">
+        <div class="step-num-tag">02</div>
+        <div class="step-emoji">💰</div>
+        <h3>Buy Some SOL</h3>
+        <p>Get Solana (SOL) from <strong>Coinbase</strong> or Binance, then send it to your Phantom wallet.</p>
+        <a href="https://coinbase.com" target="_blank" rel="noopener" class="step-btn sb-green">Get SOL →</a>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-card sc-3 reveal">
+        <div class="step-num-tag">03</div>
+        <div class="step-emoji">🔍</div>
+        <h3>Find $ALEX</h3>
+        <p>Go to <strong>pump.fun</strong> and search for $ALEX. Look for the charity coin badge!</p>
+        <a href="https://pump.fun" target="_blank" rel="noopener" class="step-btn sb-orange">Open Pump.fun →</a>
+      </div>
+      <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="step-card sc-4 reveal">
+        <div class="step-num-tag">04</div>
+        <div class="step-emoji">🍋</div>
+        <h3>Swap & Hold!</h3>
+        <p>Connect wallet, swap your SOL for $ALEX, and congratulations — you're now a donor! 🎉</p>
+        <div class="step-done-chip">✓ You're in!</div>
+      </div>
+    </div>
+    <div class="buy-cta reveal">
+      <a href="https://pump.fun" target="_blank" rel="noopener" class="btn-yellow btn-xl">🍋 Buy $ALEX on Pump.fun!</a>
+      <p>Every purchase is a real donation to childhood cancer research 💛</p>
+    </div>
+  </div>
+
+  <div class="wave-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q360,80 720,20 Q1080,-20 1440,40 L1440,80 L0,80 Z" fill="#FFFBF0"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ TOKENOMICS ============ -->
+<section class="tokenomics-section" id="tokenomics">
+  <div class="deco-circle dc-4" aria-hidden="true"></div>
+
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">Tokenomics</div>
+      <h2>Fair. Simple.<br>Transparent. ✅</h2>
+    </div>
+    <div class="token-layout">
+      <div class="token-table reveal">
+        <div class="token-row-item">
+          <span class="tri-label">Token Name</span>
+          <span class="tri-value">Alex's Lemonade Stand</span>
+        </div>
+        <div class="token-row-item">
+          <span class="tri-label">Ticker</span>
+          <span class="tri-value tri-gold">$ALEX 🍋</span>
+        </div>
+        <div class="token-row-item">
+          <span class="tri-label">Total Supply</span>
+          <span class="tri-value">1,000,000,000</span>
+        </div>
+        <div class="token-row-item">
+          <span class="tri-label">Blockchain</span>
+          <span class="tri-value">Solana ⚡</span>
+        </div>
+        <div class="token-row-item">
+          <span class="tri-label">Platform</span>
+          <span class="tri-value">Pump.fun</span>
+        </div>
+        <div class="token-row-item">
+          <span class="tri-label">Pre-sale / Team</span>
+          <span class="tri-value tri-green">None ✓</span>
+        </div>
+        <div class="token-row-item tri-highlight">
+          <span class="tri-label">Charity Fee</span>
+          <span class="tri-value">→ ALSF via donate.gg 💛</span>
+        </div>
+      </div>
+      <div class="token-donut-wrap reveal">
+        <div class="donut-chart">
+          <div class="donut-ring"></div>
+          <div class="donut-center">
+            <div class="dc-pct">100%</div>
+            <div class="dc-label">Fair Launch</div>
+          </div>
+        </div>
+        <div class="donut-legend">
+          <div class="dl-item"><span class="dl-dot dl-gold"></span> 100% Fair Launch</div>
+          <div class="dl-item"><span class="dl-dot dl-gray"></span> 0% Pre-sale</div>
+          <div class="dl-item"><span class="dl-dot dl-dark"></span> 0% Team / Dev</div>
+        </div>
+        <div class="fair-badge">🏆 Pump.fun Certified Fair Launch</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats-section" id="stats">
+  <div class="deco-star ds-3" aria-hidden="true">⭐</div>
+  <div class="deco-star ds-4" aria-hidden="true">🌟</div>
+  <div class="section-inner">
+    <h2 class="stats-heading">$ALEX by the numbers 📊</h2>
+    <div class="stats-row">
+      <div class="stat-bubble sb-1 reveal">
+        <div class="sb-icon">🍋</div>
+        <div class="sb-val" id="c-raised">$0</div>
+        <div class="sb-label">Donated</div>
+      </div>
+      <div class="stat-bubble sb-2 reveal">
+        <div class="sb-icon">👥</div>
+        <div class="sb-val" id="c-holders">0</div>
+        <div class="sb-label">Holders</div>
+      </div>
+      <div class="stat-bubble sb-3 reveal">
+        <div class="sb-icon">🎯</div>
+        <div class="sb-val" id="c-goal">$0</div>
+        <div class="sb-label">Current Goal</div>
+      </div>
+      <div class="stat-bubble sb-4 reveal">
+        <div class="sb-icon">📈</div>
+        <div class="sb-val" id="c-pct">0%</div>
+        <div class="sb-label">Goal Complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="roadmap-section" id="roadmap">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">Roadmap</div>
+      <h2>The plan to<br>fill the glass! 🍋</h2>
+    </div>
+    <div class="rm-cards">
+
+      <div class="rm-card rc-done reveal">
+        <div class="rm-icon">✅</div>
+        <div class="rm-num-tag">Step 1</div>
+        <h3>Launch as Charity Coin</h3>
+        <p>$ALEX launches on Pump.fun as a verified Charity Coin. Creator fees auto-routed to Alex's Foundation via donate.gg.</p>
+        <div class="rm-status rs-done">✓ Complete</div>
+      </div>
+
+      <div class="rm-card rc-done reveal">
+        <div class="rm-icon">✅</div>
+        <div class="rm-num-tag">Step 2</div>
+        <h3>Website & Community</h3>
+        <p>Website live! Telegram and X communities launched. Live donation tracker online!</p>
+        <div class="rm-status rs-done">✓ Complete</div>
+      </div>
+
+      <div class="rm-card rc-active reveal">
+        <div class="rm-icon">🔥</div>
+        <div class="rm-num-tag">Step 3</div>
+        <h3>First $10K Milestone</h3>
+        <p>Reach $10,000 in donations! Official recognition from Alex's Foundation. CT picks up the narrative.</p>
+        <div class="rm-status rs-active">🔥 In Progress!</div>
+      </div>
+
+      <div class="rm-card rc-soon reveal">
+        <div class="rm-icon">⏳</div>
+        <div class="rm-num-tag">Step 4</div>
+        <h3>Raydium & CEX Listings</h3>
+        <p>Bonding curve complete → Raydium LP opens. CEX applications submitted. Global reach!</p>
+        <div class="rm-status rs-soon">Coming Soon</div>
+      </div>
+
+      <div class="rm-card rc-soon reveal">
+        <div class="rm-icon">🎥</div>
+        <div class="rm-num-tag">Step 5</div>
+        <h3>Influencer Campaign</h3>
+        <p>Partner with creators who care about childhood cancer. Ryan Trahan proved this model works. $ALEX does it on-chain!</p>
+        <div class="rm-status rs-soon">Coming Soon</div>
+      </div>
+
+      <div class="rm-card rc-future reveal">
+        <div class="rm-icon">🏆</div>
+        <div class="rm-num-tag">Step 6</div>
+        <h3>Fill The Glass — $250K</h3>
+        <p>$250K raised on-chain, transparent and verifiable. $ALEX becomes the most recognized charity coin in crypto. The glass — completely full. 🍋</p>
+        <div class="rm-status rs-future">The Dream</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">FAQ</div>
+      <h2>Got questions?<br>We got answers! 💛</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Is $ALEX a real charity coin?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Yes! $ALEX is launched through Pump.fun's official <strong>Charity Coin</strong> feature. Creator fees automatically route to <strong>Alex's Lemonade Stand Foundation</strong> via donate.gg — a verified blockchain charity platform. Every donation is recorded on the Solana blockchain and fully verifiable. ALSF holds a <strong>"Top Donate.gg Charity"</strong> badge and Tax ID 56-2496146.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>How does my purchase actually help kids with cancer?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>When you buy $ALEX on Pump.fun, a portion of the <strong>creator fee</strong> is automatically sent to Alex's Lemonade Stand Foundation every time a trade happens. The fee routing is handled by Pump.fun's smart contract and donate.gg — no middleman, no trust required. Every transaction funds childhood cancer research directly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Who is Alex's Lemonade Stand Foundation?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p><strong>Alexandra "Alex" Scott</strong> was diagnosed with neuroblastoma before her first birthday. At age 4, she set up a lemonade stand to raise money for "her doctors" to help other kids with cancer. She passed away at age 8 in 2004, but her dream lived on. Alex's Lemonade Stand Foundation has since raised over <strong>$250 million</strong> and funded over <strong>1,000 research grants</strong>. It is one of the most respected childhood cancer charities in the world. <a href="https://www.alexslemonade.org/" target="_blank" rel="noopener">Learn more →</a></p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>What is Pump.fun? Is it safe?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Pump.fun is the most popular fair-launch token platform on the Solana blockchain. Every token starts on a bonding curve — the price rises as more people buy. There are <strong>no pre-sales, no team allocations, and no rugs</strong> possible during the bonding curve phase. Once the market cap hits ~$69K, liquidity moves to Raydium automatically. It is used by millions of traders worldwide.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>When does the contract address go live?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>The $ALEX contract address will be published the moment it launches on Pump.fun. The CA will appear in the nav bar and contract address section of this page automatically. Follow our <strong>Twitter/X and Telegram</strong> communities for the exact launch announcement — you'll want to be early! 🍋</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Do I need to do anything special to "donate" — or just hold?</span>
+          <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Just <strong>buy and hold</strong>! Every trade on Pump.fun generates a creator fee — and those fees flow to ALSF via donate.gg automatically. You don't need to do anything extra. The moment you buy $ALEX, you've already contributed. Every buy, every sell, every swap helps fill the glass. 💛</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wave-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q360,80 720,40 Q1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--light-blue)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="community-section" id="community">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="pill-label">Community</div>
+      <h2>Join the $ALEX<br>family! 🍋</h2>
+      <p class="section-sub">Thousands of holders. One mission. Come join us!</p>
+    </div>
+    <div class="social-row">
+      <a href="#" target="_blank" rel="noopener" class="social-bubble soc-x reveal">
+        <div class="soc-emoji">𝕏</div>
+        <h3>Twitter / X</h3>
+        <p>Latest news & alpha</p>
+        <span class="soc-arrow">→</span>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="social-bubble soc-tg reveal">
+        <div class="soc-emoji">✈️</div>
+        <h3>Telegram</h3>
+        <p>Chat with the community</p>
+        <span class="soc-arrow">→</span>
+      </a>
+      <a href="https://pump.fun" target="_blank" rel="noopener" class="social-bubble soc-pump reveal">
+        <div class="soc-emoji">🚀</div>
+        <h3>Pump.fun</h3>
+        <p>Trade $ALEX now!</p>
+        <span class="soc-arrow">→</span>
+      </a>
+      <a href="https://www.alexslemonade.org/" target="_blank" rel="noopener" class="social-bubble soc-charity reveal">
+        <div class="soc-emoji">🍋</div>
+        <h3>The Foundation</h3>
+        <p>Alex's official charity</p>
+        <span class="soc-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <!-- ALSF logo in footer -->
+    <img src="alsf-logo.png" alt="Alex's Lemonade Stand Foundation" class="footer-alsf-logo" onerror="this.style.display='none'"/>
+
+    <div class="footer-logo">🍋 $ALEX</div>
+    <p class="footer-tagline">One kid's dream. On-chain forever.</p>
+    <div class="footer-links">
+      <a href="https://pump.fun" target="_blank" rel="noopener">Pump.fun</a>
+      <a href="https://www.alexslemonade.org/" target="_blank" rel="noopener">Foundation</a>
+      <a href="https://donate.gg" target="_blank" rel="noopener">donate.gg</a>
+      <a href="#">Twitter</a>
+      <a href="#">Telegram</a>
+    </div>
+    <p class="footer-disclaimer">$ALEX is a charity memecoin on Solana launched via Pump.fun's Charity Coin feature. Creator fees automatically route to Alex's Lemonade Stand Foundation via donate.gg. Not financial advice. Crypto is risky. But hope isn't. 💛</p>
+    <div class="footer-bottom">
+      <span>© 2025 $ALEX Community</span>
+      <span>·</span>
+      <span>Built with 💛 for Alex</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY BUY BAR -->
+<div class="sticky-buy" id="stickyBuy" aria-hidden="true">
+  <span class="sticky-text">🍋 <strong>$ALEX</strong> — Every trade funds childhood cancer research!</span>
+  <a href="https://pump.fun" target="_blank" rel="noopener" class="sticky-btn">Buy $ALEX 🚀</a>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- TOAST -->
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
