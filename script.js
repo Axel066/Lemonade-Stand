@@ -65,13 +65,13 @@ setInterval(spawnParticle, 2000);
  *
  * ============================================================ */
 const CONFIG = {
-  CA:               'TBA',    // ← STEP 1: your Solana contract address
-  GOAL:             50_000,   // donation goal in USD (edit anytime)
+  CA:               'BwLqa4a7YiDZpM1KdhPFVpW4adEQ6LvTy9FsrRjMpump',
+  GOAL:             50_000,
 
-  RAISED_USD:       0,        // ← STEP 2a: real USD donated (from donate.gg)
-  HOLDERS:          0,        // ← STEP 2b: real holder count (from pump.fun)
+  RAISED_USD:       0,        // ← update from donate.gg dashboard
+  HOLDERS:          0,        // ← update from pump.fun coin page
 
-  DEXSCREENER_PAIR: null,     // ← STEP 3: pair address after bonding curve
+  DEXSCREENER_PAIR: 'DHChjqxfhsvDERxQd8dpu3p2fePBbrpVeKfZdLMrJ7dX',
 };
 
 /* ============ GLASS WAVE ============ */
@@ -183,7 +183,7 @@ function copyCA() {
       const btnText = document.getElementById('ca-btn-text');
       const navText = document.getElementById('nav-ca-text');
       if (btnText) { btnText.textContent = 'Copied! ✓'; setTimeout(() => { btnText.textContent = 'Copy CA'; }, 2500); }
-      if (navText) { navText.textContent = 'Copied! ✓'; setTimeout(() => { navText.textContent = '📋 CA:BwLqa4a7YiDZpM1KdhPFVpW4adEQ6LvTy9FsrRjMpump ' + CONFIG.CA.slice(0,6) + '...'; }, 2500); }
+      if (navText) { navText.textContent = 'Copied! ✓'; setTimeout(() => { navText.textContent = '📋 CA: ' + CONFIG.CA.slice(0,6) + '...' + CONFIG.CA.slice(-4); }, 2500); }
     })
     .catch(() => showToast('🍋 Launching soon — stay tuned!'));
 }
