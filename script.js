@@ -68,10 +68,11 @@ const CONFIG = {
   CA:               'BwLqa4a7YiDZpM1KdhPFVpW4adEQ6LvTy9FsrRjMpump',
   GOAL:             50_000,
 
-  RAISED_USD:       0,        // ← update from donate.gg dashboard
+  RAISED_USD:       2200,     // baseline confirmed donation total
   HOLDERS:          0,        // ← update from pump.fun coin page
 
   DEXSCREENER_PAIR: 'DHChjqxfhsvDERxQd8dpu3p2fePBbrpVeKfZdLMrJ7dX',
+  CREATOR_FEE_PCT:  0.01,     // 1% creator fee routed to charity
 };
 
 /* ============ GLASS WAVE ============ */
@@ -188,23 +189,37 @@ function copyCA() {
     .catch(() => showToast('🍋 Launching soon — stay tuned!'));
 }
 
-/* ============ LIVE MARKET DATA ============ */
-// Fetches real market cap — two sources depending on stage:
-//   Phase 1 (bonding curve):  Pump.fun API  → activated by CONFIG.CA
-//   Phase 2 (post-Raydium):   DexScreener   → activated by CONFIG.DEXSCREENER_PAIR
-//   DexScreener always wins if both are set (more accurate after graduation).
-async function fetchLiveData() {
-  if (!isLive) return; // no live data before CA is set
+/* ============ LIVE MARKET DATA + DONATION TICKER ============ */
+let donationTicker = null;
 
-  // === Phase 1: Pump.fun API (bonding curve — free, no key) ===
+function startDonationTicker(vol24h) {
+  if (donationTicker) clearInterval(donationTicker);
+  if (vol24h <= 0) return;
+  // Estimate donations earned per millisecond from 24h trading volume × fee %
+  const feePerMs = (vol24h * CONFIG.CREATOR_FEE_PCT) / 86_400_000;
+  let last = Date.now();
+  donationTicker = setInterval(() => {
+    const now = Date.now();
+    raised += feePerMs * (now - last);
+    last = now;
+    pct = Math.min((raised / GOAL) * 100, 100);
+    updateAll();
+    if (raisedEl) raisedEl.textContent = formatMoney(raised);
+  }, 1000);
+}
+
+async function fetchLiveData() {
+  if (!isLive) return;
+
+  // === Phase 1: Pump.fun API (bonding curve) ===
   try {
     const res  = await fetch(`https://frontend-api.pump.fun/coins/${CONFIG.CA}`);
     const coin = await res.json();
     const usdMc = parseFloat(coin?.usd_market_cap || 0);
     if (usdMc > 0 && mcEl) mcEl.textContent = formatMoney(usdMc);
-  } catch (_) { /* Pump.fun unreachable — keep current value */ }
+  } catch (_) {}
 
-  // === Phase 2: DexScreener (after bonding curve — overrides Pump.fun) ===
+  // === Phase 2: DexScreener (overrides Pump.fun, also drives donation ticker) ===
   if (CONFIG.DEXSCREENER_PAIR) {
     try {
       const res  = await fetch(`https://api.dexscreener.com/latest/dex/pairs/solana/${CONFIG.DEXSCREENER_PAIR}`);
@@ -212,7 +227,10 @@ async function fetchLiveData() {
       const pair = data?.pairs?.[0];
       const fdv  = parseFloat(pair?.fdv || 0);
       if (fdv > 0 && mcEl) mcEl.textContent = formatMoney(fdv);
-    } catch (_) { /* keep current value */ }
+      // Drive real-time donation counter from live 24h volume
+      const vol24h = parseFloat(pair?.volume?.h24 || 0);
+      startDonationTicker(vol24h);
+    } catch (_) {}
   }
 }
 
@@ -267,10 +285,10 @@ const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
   new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      animateCount(document.getElementById('c-raised'),  16500, '$');
-      animateCount(document.getElementById('c-holders'), 2841);
-      animateCount(document.getElementById('c-goal'),    50000, '$');
-      animateCount(document.getElementById('c-pct'),     33, '', '%');
+      animateCount(document.getElementById('c-raised'),  CONFIG.RAISED_USD, '$');
+      animateCount(document.getElementById('c-holders'), CONFIG.HOLDERS || 0);
+      animateCount(document.getElementById('c-goal'),    CONFIG.GOAL, '$');
+      animateCount(document.getElementById('c-pct'),     Math.round((CONFIG.RAISED_USD / CONFIG.GOAL) * 100), '', '%');
     }
   }, { threshold: 0.3 }).observe(statsSection);
 }
